@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarush Saxena - CV-Flix Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-logo">AARUSH SAXENA</div>
+        <div class="nav-links">
+            <a href="#expertise">Expertise</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-profile">
+            <div class="profile-icon">AS</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">AARUSH SAXENA</h1>
+            <h2 class="hero-subtitle">Software Engineer Intern <span class="highlight">@Amdocs</span></h2>
+            <p class="hero-description">
+                I'm a developer specializing in the design and implementation of generative AI systems, 
+                with deep expertise in tools like Cursor and other state-of-the-art AI platforms. 
+                I'm passionate about creating intelligent, efficient workflows that empower teams to build faster and smarter. 
+                What sets me apart is my ability to bridge practical engineering with cutting-edge AI innovation to deliver real, scalable impact.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-play">
+                    <span class="play-icon">▶</span> Play Reel
+                </a>
+                <a href="#contact" class="btn-info">
+                    <span class="info-icon">ⓘ</span> More Info
+                </a>
+            </div>
+            <div class="hero-tags">
+                <span class="tag">Generative AI</span>
+                <span class="tag">Full-Stack</span>
+                <span class="tag">Prompt Engineering</span>
+            </div>
+        </div>
+        <div class="hero-gradient"></div>
+    </section>
+
+    <!-- Now Streaming - Expertise Section -->
+    <section class="section expertise-section" id="expertise">
+        <h2 class="section-title">🎬 Now Streaming</h2>
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="scrollCarousel('expertise-carousel', -1)">❮</button>
+            <div class="carousel" id="expertise-carousel">
+                <div class="card expertise-card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="card-icon">🤖</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">GENERATIVE AI</span>
+                        <h3>GenAI Development</h3>
+                        <p>Expert in designing, integrating, and deploying GenAI workflows using tools like Cursor and other advanced AI platforms.</p>
+                    </div>
+                </div>
+                <div class="card expertise-card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <div class="card-icon">⚡</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">AUTOMATION</span>
+                        <h3>AI-Driven Productivity</h3>
+                        <p>Building intelligent automation pipelines that streamline development processes and accelerate product delivery.</p>
+                    </div>
+                </div>
+                <div class="card expertise-card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="card-icon">💻</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">FULL-STACK</span>
+                        <h3>Software Engineering</h3>
+                        <p>Architecting scalable solutions that combine traditional engineering with cutting-edge AI capabilities.</p>
+                    </div>
+                </div>
+                <div class="card expertise-card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="card-icon">✨</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">OPTIMIZATION</span>
+                        <h3>Prompt Engineering</h3>
+                        <p>Crafting high-impact prompts, customizing model behavior, and enhancing performance for real-world use cases.</p>
+                    </div>
+                </div>
+                <div class="card expertise-card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <div class="card-icon">🎯</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">STRATEGY</span>
+                        <h3>AI Tech Enablement</h3>
+                        <p>Guiding teams on how to adopt GenAI effectively, translating business needs into practical AI-powered solutions.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('expertise-carousel', 1)">❯</button>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="section projects-section" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="scrollCarousel('projects-carousel', -1)">❮</button>
+            <div class="carousel" id="projects-carousel">
+                <div class="card project-card">
+                    <div class="card-image project-image" style="background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);">
+                        <div class="project-icon">🔄</div>
+                        <div class="card-badge">AI AGENT</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Mainframe Legacy Parity Agent</h3>
+                        <p>AI-powered code analysis tool that checks if Java code is equivalent to mainframe legacy and recommends fixes.</p>
+                        <div class="project-tags">
+                            <span>Java</span>
+                            <span>Cursor AI</span>
+                            <span>Code Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card project-card">
+                    <div class="card-image project-image" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                        <div class="project-icon">☀️</div>
+                        <div class="card-badge">DATA SCIENCE</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Solar Panel Analysis</h3>
+                        <p>Data analysis for implementing solar panels across multiple cities, calculating efficiencies and suitability.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Data Analysis</span>
+                            <span>Visualization</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card project-card">
+                    <div class="card-image project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="project-icon">📊</div>
+                        <div class="card-badge">PRODUCTIVITY</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Excel Collaboration UI</h3>
+                        <p>A unified interface that collaborates Excel sheets and enables searching across all sheets with relevant outputs.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>Excel API</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card project-card">
+                    <div class="card-image project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <div class="project-icon">🐾</div>
+                        <div class="card-badge">WEB APP</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Pet Adoption Platform</h3>
+                        <p>Connects shelters with people wanting to adopt pets, featuring various categories and matching system.</p>
+                        <div class="project-tags">
+                            <span>MERN Stack</span>
+                            <span>MongoDB</span>
+                            <span>Express</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('projects-carousel', 1)">❯</button>
+        </div>
+    </section>
+
+    <!-- Top Skills Section -->
+    <section class="section skills-section" id="skills">
+        <div class="top-badge">TOP 4</div>
+        <h2 class="section-title">Top Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-rank">1</div>
+                <div class="skill-icon">🐍</div>
+                <div class="skill-content">
+                    <h3>PYTHON</h3>
+                    <p>Building AI pipelines, automation scripts, data analysis tools, and machine learning implementations with clean, efficient code.</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-rank">2</div>
+                <div class="skill-icon">⚛️</div>
+                <div class="skill-content">
+                    <h3>MERN FULL-STACK</h3>
+                    <p>End-to-end web development with MongoDB, Express.js, React, and Node.js – building scalable, modern applications.</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-rank">3</div>
+                <div class="skill-icon">💬</div>
+                <div class="skill-content">
+                    <h3>PROMPT ENGINEERING</h3>
+                    <p>Crafting precise, effective prompts that maximize AI model performance and deliver consistent, high-quality outputs.</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-rank">4</div>
+                <div class="skill-icon">🎯</div>
+                <div class="skill-content">
+                    <h3>LEADERSHIP & COMMUNICATION</h3>
+                    <p>Driving team collaboration, mentoring peers, and translating complex technical concepts into actionable insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section class="section experience-section" id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="experience-header">
+                        <h3>Software Engineer Intern</h3>
+                        <span class="company">Amdocs</span>
+                    </div>
+                    <span class="duration">January 2026 - June 2026 · 6 mos</span>
+                    <ul class="experience-details">
+                        <li>Developing AI-powered solutions using Cursor and advanced GenAI tools</li>
+                        <li>Building the Mainframe Legacy Parity Agent for code analysis and migration</li>
+                        <li>Implementing intelligent automation pipelines to streamline development processes</li>
+                        <li>Collaborating with cross-functional teams to deliver scalable solutions</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="experience-header">
+                        <h3>Software Engineer Intern</h3>
+                        <span class="company">Qentelli Solutions</span>
+                    </div>
+                    <span class="duration">October 2023 - May 2024 · 8 mos</span>
+                    <ul class="experience-details">
+                        <li>Contributed to full-stack development projects using MERN stack</li>
+                        <li>Developed data analysis solutions and visualization tools</li>
+                        <li>Gained hands-on experience with agile development methodologies</li>
+                        <li>Collaborated on client projects and delivered quality software solutions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="contact-subtitle">Ready to build something amazing together?</p>
+        <div class="contact-cards">
+            <a href="mailto:aarushsaxena13@gmail.com" class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div class="contact-label">Email</div>
+                <div class="contact-value">aarushsaxena13@gmail.com</div>
+            </a>
+            <a href="tel:+917030393663" class="contact-card">
+                <div class="contact-icon">📱</div>
+                <div class="contact-label">Phone</div>
+                <div class="contact-value">+91 7030393663</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">AARUSH SAXENA</div>
+            <p class="footer-tagline">Bridging Engineering with AI Innovation</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p class="copyright">© 2026 Aarush Saxena. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
