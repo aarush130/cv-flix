@@ -10,23 +10,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Netflix Ta-dum Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-letter-group">
+                <span class="splash-letter">A</span>
+                <span class="splash-letter">A</span>
+                <span class="splash-letter">R</span>
+                <span class="splash-letter">U</span>
+                <span class="splash-letter">S</span>
+                <span class="splash-letter">H</span>
+            </div>
+            <div class="splash-bar"></div>
+            <div class="splash-tagline">CV-FLIX</div>
+        </div>
+    </div>
+
+    <!-- "Are you still watching?" Popup -->
+    <div class="idle-popup" id="idlePopup">
+        <div class="idle-popup-overlay" onclick="dismissIdle()"></div>
+        <div class="idle-popup-content">
+            <div class="idle-popup-icon">👀</div>
+            <h3>Are you still watching?</h3>
+            <p>Aarush Saxena's Portfolio</p>
+            <button class="idle-popup-btn" onclick="dismissIdle()">Continue Watching</button>
+        </div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-logo">AARUSH SAXENA</div>
         <div class="nav-links">
             <a href="#expertise">Expertise</a>
             <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
             <a href="#skills">Skills</a>
             <a href="#experience">Experience</a>
             <a href="#contact">Contact</a>
         </div>
-        <div class="nav-profile">
+        <div class="nav-profile" id="profileToggle">
             <div class="profile-icon">AS</div>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#contact" class="dropdown-item">
+                    <span class="dropdown-icon">📄</span> Contact Me
+                </a>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-label">Switch Theme</div>
+                <button class="dropdown-item theme-btn" data-theme="netflix" onclick="setTheme('netflix')">
+                    <span class="theme-dot" style="background:#E50914"></span> Netflix Red
+                </button>
+                <button class="dropdown-item theme-btn" data-theme="disney" onclick="setTheme('disney')">
+                    <span class="theme-dot" style="background:#0063e5"></span> Disney+ Blue
+                </button>
+                <button class="dropdown-item theme-btn" data-theme="prime" onclick="setTheme('prime')">
+                    <span class="theme-dot" style="background:#00a8e1"></span> Prime Teal
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="hero-video-wrap">
+            <div id="heroYTPlayer"></div>
+        </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">AARUSH SAXENA</h1>
@@ -38,9 +85,9 @@
                 What sets me apart is my ability to bridge practical engineering with cutting-edge AI innovation to deliver real, scalable impact.
             </p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn-play">
+                <button class="btn-play" onclick="openVideoModal('AYxO1yYquJM', 'Steamboat Willie (1928)', '1928', 'Animation', '7 min', 'Walt Disney', 'The debut of Mickey Mouse and Minnie Mouse. Directed by Walt Disney and Ub Iwerks, this groundbreaking cartoon was one of the first with synchronized sound throughout. Now in the public domain as of 2024.')">
                     <span class="play-icon">▶</span> Play Reel
-                </a>
+                </button>
                 <a href="#contact" class="btn-info">
                     <span class="info-icon">ⓘ</span> More Info
                 </a>
@@ -51,8 +98,36 @@
                 <span class="tag">Prompt Engineering</span>
             </div>
         </div>
+        <button class="sound-toggle" id="soundToggle" onclick="toggleSound()" title="Toggle Sound">
+            <svg class="sound-icon sound-off" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+            <svg class="sound-icon sound-on" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        </button>
         <div class="hero-gradient"></div>
     </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-overlay" onclick="closeVideoModal()"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+            <div class="video-modal-header">
+                <h2 id="modalTitle">Steamboat Willie (1928)</h2>
+                <span class="video-modal-badge">PUBLIC DOMAIN</span>
+            </div>
+            <div class="modal-video-wrap">
+                <iframe id="modalVideo"
+                    src=""
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-modal-info">
+                <p class="video-modal-meta" id="modalMeta"></p>
+                <p class="video-modal-desc" id="modalDesc"></p>
+            </div>
+        </div>
+    </div>
 
     <!-- Now Streaming - Expertise Section -->
     <section class="section expertise-section" id="expertise">
@@ -115,9 +190,9 @@
         </div>
     </section>
 
-    <!-- Featured Projects Section -->
+    <!-- Featured Projects with Superman Theme -->
     <section class="section projects-section" id="projects">
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">⚡ Featured Projects</h2>
         <div class="carousel-container">
             <button class="carousel-btn prev" onclick="scrollCarousel('projects-carousel', -1)">❮</button>
             <div class="carousel" id="projects-carousel">
@@ -183,6 +258,71 @@
                 </div>
             </div>
             <button class="carousel-btn next" onclick="scrollCarousel('projects-carousel', 1)">❯</button>
+        </div>
+    </section>
+
+    <!-- Continue Watching - Education Section -->
+    <section class="section education-section" id="education">
+        <h2 class="section-title">📚 Continue Watching</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <div class="education-thumb">
+                    <div class="education-icon">🎓</div>
+                </div>
+                <div class="education-info">
+                    <h3>B.Tech in Computer Science (Core)</h3>
+                    <p class="education-school">VIT Vellore</p>
+                    <p class="education-year">2022 - 2026</p>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" style="--progress: 85%;">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="progress-label">Final Year · 85% complete</span>
+                    </div>
+                </div>
+                <div class="education-resume-badge">
+                    <div class="resume-ring">
+                        <svg viewBox="0 0 36 36">
+                            <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="ring-fill" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        </svg>
+                        <span class="ring-text">85%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My List - Certifications Section -->
+    <section class="section certs-section" id="certifications">
+        <h2 class="section-title">✅ My List</h2>
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="scrollCarousel('certs-carousel', -1)">❮</button>
+            <div class="carousel" id="certs-carousel">
+                <div class="card cert-card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+                        <div class="card-icon">💻</div>
+                        <div class="card-badge cert-badge">CERTIFIED</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">FULL-STACK</span>
+                        <h3>MERN Full Stack Development</h3>
+                        <p>Comprehensive certification covering MongoDB, Express.js, React, and Node.js for building modern web applications.</p>
+                    </div>
+                </div>
+                <div class="card cert-card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #a8171c 0%, #c0392b 50%, #e74c3c 100%);">
+                        <div class="card-icon">🐍</div>
+                        <div class="card-badge cert-badge">HARVARD</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-label">CS50</span>
+                        <h3>CS50's Introduction to Programming with Python</h3>
+                        <p>Harvard University's renowned computer science course covering Python programming, algorithms, and problem-solving.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="scrollCarousel('certs-carousel', 1)">❯</button>
         </div>
     </section>
 
@@ -292,11 +432,12 @@
                 <a href="#home">Home</a>
                 <a href="#expertise">Expertise</a>
                 <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
                 <a href="#skills">Skills</a>
                 <a href="#experience">Experience</a>
                 <a href="#contact">Contact</a>
             </div>
-            <p class="copyright">© 2026 Aarush Saxena. All rights reserved.</p>
+            <p class="copyright">© 2026 Aarush Saxena. All rights reserved. | Public domain films sourced from Internet Archive.</p>
         </div>
     </footer>
 
