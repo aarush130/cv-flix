@@ -3,12 +3,11 @@
 // =====================================================
 
 const BG_VIDEOS = [
-    'AYxO1yYquJM',  // Steamboat Willie (1928)
-    '1JWCAXzNO00',  // Plane Crazy (1928)
-    '3F_4uM7RxDI',  // Superman: The Mad Scientist (1941)
-    'V-d50cR8Ejo',  // Superman: Mechanical Monsters (1941)
-    'BM8uUd857k8',  // Betty Boop: Minnie the Moocher (1932)
-    'tBKAG0ut9Ds',  // Betty Boop: Barnacle Bill (1930)
+    '8LdpvQHg3e0',  // Steamboat Willie (1928) - public domain
+    '2aAGA85yt5c',  // Nosferatu (1922) - public domain
+    '9m830jhUi3E',  // A Trip to the Moon (1902) - Méliès - public domain
+    'MQ8ZKw7YIfQ',  // Night of the Living Dead (1968) - public domain
+    '4EE4qdXehoU',  // The General (1926) - Buster Keaton - public domain
 ];
 
 let currentBgIndex = Math.floor(Math.random() * BG_VIDEOS.length);
@@ -102,7 +101,8 @@ function onYouTubeIframeAPIReady() {
             fs: 0,
             iv_load_policy: 3,
             playsinline: 1,
-            start: 10
+            start: 10,
+            origin: window.location.origin
         },
         events: {
             onReady: (e) => e.target.playVideo(),
@@ -111,24 +111,33 @@ function onYouTubeIframeAPIReady() {
                     const next = getNextVideo();
                     e.target.loadVideoById({ videoId: next, startSeconds: 10 });
                 }
+            },
+            onError: (e) => {
+                const next = getNextVideo();
+                e.target.loadVideoById({ videoId: next, startSeconds: 10 });
             }
         }
     });
 }
 
 // =====================================================
-// Sound Toggle
+// Background Music (Für Elise) & Sound Toggle
 // =====================================================
+const bgMusic = document.getElementById('bgMusic');
+if (bgMusic) bgMusic.volume = 0.25;
+
 function toggleSound() {
-    if (!heroPlayer) return;
     const btn = document.getElementById('soundToggle');
+    const np = document.getElementById('nowPlaying');
+
     if (isMuted) {
-        heroPlayer.unMute();
-        heroPlayer.setVolume(40);
+        if (bgMusic) bgMusic.play().catch(() => {});
         btn.classList.add('unmuted');
+        if (np) np.classList.add('active');
     } else {
-        heroPlayer.mute();
+        if (bgMusic) bgMusic.pause();
         btn.classList.remove('unmuted');
+        if (np) np.classList.remove('active');
     }
     isMuted = !isMuted;
 }
@@ -149,7 +158,7 @@ function openVideoModal(videoId, title, year, genre, duration, director, descrip
         .join('');
     modalDesc.textContent = description;
 
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&origin=${encodeURIComponent(window.location.origin)}`;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -181,6 +190,26 @@ function setTheme(theme) {
     const saved = localStorage.getItem('cvflix-theme');
     if (saved) setTheme(saved);
 })();
+
+// Auto-start music on first user interaction
+function startMusicOnInteraction() {
+    if (bgMusic && isMuted) {
+        bgMusic.play().then(() => {
+            isMuted = false;
+            const btn = document.getElementById('soundToggle');
+            const np = document.getElementById('nowPlaying');
+            if (btn) btn.classList.add('unmuted');
+            if (np) np.classList.add('active');
+        }).catch(() => {});
+    }
+    ['scroll', 'click', 'touchstart'].forEach(evt => {
+        document.removeEventListener(evt, startMusicOnInteraction);
+    });
+}
+
+['scroll', 'click', 'touchstart'].forEach(evt => {
+    document.addEventListener(evt, startMusicOnInteraction, { once: false, passive: true });
+});
 
 // =====================================================
 // Navbar

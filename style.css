@@ -539,10 +539,6 @@ body {
 
 /* Sound Toggle */
 .sound-toggle {
-    position: absolute;
-    bottom: 30%;
-    right: 4%;
-    z-index: 3;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -569,6 +565,70 @@ body {
 .sound-on { display: none; }
 .sound-toggle.unmuted .sound-off { display: none; }
 .sound-toggle.unmuted .sound-on { display: block; }
+
+/* Sound controls wrapper */
+.sound-controls {
+    position: absolute;
+    bottom: 30%;
+    right: 4%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+/* Now Playing indicator */
+.now-playing {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    animation: fadeSlideIn 0.4s ease forwards;
+}
+
+.now-playing.active {
+    display: flex;
+}
+
+.now-playing-text {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+}
+
+.now-playing-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+}
+
+.now-playing-bars span {
+    width: 3px;
+    background: var(--accent);
+    border-radius: 1px;
+    animation: barBounce 0.8s ease-in-out infinite;
+}
+
+.now-playing-bars span:nth-child(1) { height: 6px; animation-delay: 0s; }
+.now-playing-bars span:nth-child(2) { height: 10px; animation-delay: 0.15s; }
+.now-playing-bars span:nth-child(3) { height: 4px; animation-delay: 0.3s; }
+
+@keyframes barBounce {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1.2); }
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
 
 /* =====================================================
    Sections Common
@@ -1285,7 +1345,7 @@ body {
     .footer-links { gap: 1rem; }
     .education-card { flex-direction: column; text-align: center; }
     .education-resume-badge { display: none; }
-    .sound-toggle { bottom: 15%; right: 5%; }
+    .sound-controls { bottom: 15%; right: 5%; }
 }
 
 @media (max-width: 480px) {
